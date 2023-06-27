@@ -1,0 +1,1 @@
+export { isLocalDataUpdated } from './localDataValidator';

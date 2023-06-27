@@ -1,57 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FilterComponent, HomeSqueletonComponent, PodcastListComponent } from '../components';
 import { PodcastInterface } from '@/models';
-//import { fetchPodcasts } from "@/services";
-//import { useLoaderContext } from "@/hooks";
 import { MessageComponent } from '@/shared/components';
 import { useGetPodcastsQuery } from '../api/api';
+import { isLocalDataUpdated } from '@/util';
 
 const PodcastsPage = () => {
-  const [error, setError] = useState(false);
   const [query, setQuery] = useState<string>('');
-  //const { state, showLoading, hideLoading } = useLoaderContext();
-  const [podcasts, setPodcasts] = useState<PodcastInterface[]>([]);
   const [filteredPodcasts, setFilteredPodcasts] = useState<PodcastInterface[]>([]);
+  const { data: result, isLoading, isError, refetch } = useGetPodcastsQuery();
 
-  const { data, isLoading, isSuccess, isError, refetch } = useGetPodcastsQuery();
-
-  console.log('data', data);
-  console.log('isLoading', isLoading);
-  console.log('isError', isError);
-  const temp = true;
-  /*   useEffect(() => {
-    const getPodcasts = async () => {
-      try {
-        showLoading();
-        const data = await fetchPodcasts();
-        setPodcasts(data ?? []);
-        setFilteredPodcasts(data ?? []);
-      } catch (err: unknown) {
-        setError(true);
-      } finally {
-        hideLoading();
+  useEffect(() => {
+    const validateData = async () => {
+      if (result && isLocalDataUpdated(result.previousTimeStamp)) {
+        setFilteredPodcasts(result.data);
+      } else {
+        await refetch();
       }
     };
 
-    void getPodcasts();
-  }, []); */
+    void (result && validateData());
+  }, [result]);
 
   const handleChange = (value: string) => {
-    const filteredList: PodcastInterface[] = podcasts?.filter((podcast: PodcastInterface) => {
+    const podcasts = result?.data ?? [];
+    const filteredList: PodcastInterface[] = podcasts.filter((podcast: PodcastInterface) => {
       return (
         podcast.title.toLowerCase().search(value.toLowerCase()) !== -1 ||
         podcast.author.toLowerCase().search(value.toLowerCase()) !== -1
       );
     });
     setQuery(value);
-    setFilteredPodcasts(filteredList);
+    setFilteredPodcasts(filteredList || []);
   };
 
   return (
     <div className="flex flex-col py-6">
-      {error ? (
+      {isError ? (
         <MessageComponent message={'There was an error in obtaining the podcast listing.'} />
-      ) : temp ? (
+      ) : isLoading ? (
         <HomeSqueletonComponent />
       ) : (
         <>
