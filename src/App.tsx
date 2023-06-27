@@ -1,14 +1,26 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+//import { Counter } from './features/counter/Counter';
+import { useGetPodcastsQuery } from '@/features/podcasts';
 import './App.css';
 
 function App() {
+  const { data, isLoading, isSuccess, isError, refetch } = useGetPodcastsQuery();
+
+  console.log('data', data);
+  console.log('isLoading', isLoading);
+  console.log('isSuccess', isSuccess);
+  console.log('isError, ', isError);
+
+  const handleClick = async () => {
+    await refetch();
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -22,6 +34,7 @@ function App() {
           >
             React
           </a>
+          <button onClick={handleClick}>click</button>
           <span>, </span>
           <a
             className="App-link"
