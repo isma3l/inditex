@@ -4,14 +4,20 @@ import { PodcastInterface } from '@/models';
 //import { fetchPodcasts } from "@/services";
 //import { useLoaderContext } from "@/hooks";
 import { MessageComponent } from '@/shared/components';
+import { useGetPodcastsQuery } from '../api/api';
 
-const HomePage = () => {
+const PodcastsPage = () => {
   const [error, setError] = useState(false);
   const [query, setQuery] = useState<string>('');
   //const { state, showLoading, hideLoading } = useLoaderContext();
   const [podcasts, setPodcasts] = useState<PodcastInterface[]>([]);
   const [filteredPodcasts, setFilteredPodcasts] = useState<PodcastInterface[]>([]);
 
+  const { data, isLoading, isSuccess, isError, refetch } = useGetPodcastsQuery();
+
+  console.log('data', data);
+  console.log('isLoading', isLoading);
+  console.log('isError', isError);
   const temp = true;
   /*   useEffect(() => {
     const getPodcasts = async () => {
@@ -57,4 +63,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default PodcastsPage;
