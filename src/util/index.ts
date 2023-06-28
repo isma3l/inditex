@@ -1,1 +1,2 @@
-export { isLocalDataUpdated } from './localDataValidator';
+export { isLocalDataUpdated } from './localDataValidator/localDataValidator';
+export { formatDate } from './date/formatDate';
