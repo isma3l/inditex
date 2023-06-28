@@ -1,13 +1,13 @@
+import { useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import {
   PodcastCardComponent,
   DetailsSqueletonComponent,
 } from '@/features/detailPodcast/components';
-//import { useLoaderContext } from '@/shared/hooks';
-import { useEffect, useState } from 'react';
 import { PodcastDetailsInterface } from '@/models';
-//import { fetchPodcastDetails } from '@/services/podcastDetailsService';
 import { MessageComponent } from '@/shared/components';
+import { useGetDetailsPodcastQuery } from '../api/api';
+import { isLocalDataUpdated } from '@/util';
 
 const podcastDetailEmpty: PodcastDetailsInterface = {
   episodes: [],
@@ -21,33 +21,30 @@ const podcastDetailEmpty: PodcastDetailsInterface = {
 
 const PodcastDetailsPage = () => {
   const urlParams = useParams();
-  const [error, setError] = useState(false);
-  //const { state, showLoading, hideLoading } = useLoaderContext();
-  const [podcastDetails, setPodcastDetails] = useState<PodcastDetailsInterface>(podcastDetailEmpty);
+  const {
+    data: result,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetDetailsPodcastQuery(urlParams.podcastId ?? '');
 
-  const { podcast } = podcastDetails;
-  const temp = true;
-  /*   useEffect(() => {
-    const getPodcastDetails = async () => {
-      try {
-        showLoading();
-        const data = await fetchPodcastDetails(urlParams.podcastId ?? "");
-        if (data) setPodcastDetails(data);
-      } catch (err: unknown) {
-        setError(true);
-      } finally {
-        hideLoading();
+  useEffect(() => {
+    const validateData = async () => {
+      if (result && !isLocalDataUpdated(result.previousTimeStamp)) {
+        await refetch();
       }
     };
 
-    void getPodcastDetails();
-  }, []); */
+    void (result && validateData());
+  }, [result]);
+
+  const { podcast } = result?.data ?? podcastDetailEmpty;
 
   return (
     <div className="flex py-6 justify-between">
-      {error ? (
+      {isError ? (
         <MessageComponent message={'There was an error getting the detail of a podcast'} />
-      ) : /* state.loading */ temp ? (
+      ) : isLoading ? (
         <DetailsSqueletonComponent />
       ) : (
         <>
@@ -57,7 +54,7 @@ const PodcastDetailsPage = () => {
             urlImage={podcast.urlImage}
             description={podcast?.description ?? ''}
           />
-          <Outlet context={{ podcastDetails }} />
+          <Outlet context={{ podcastDetails: result?.data ?? podcastDetailEmpty }} />
         </>
       )}
     </div>

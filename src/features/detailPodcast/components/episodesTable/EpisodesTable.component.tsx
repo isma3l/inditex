@@ -20,7 +20,7 @@ const EpisodeTableComponent = ({ episodes }: EpisodeTableComponentProps) => {
           </tr>
         </thead>
         <tbody className="divide-y">
-          {episodes.map((episode) => {
+          {episodes.map((episode: EpisodeInterface) => {
             const episodeLink = RouteKeys.episode(urlParams.podcastId ?? '', episode.id);
             return (
               <tr

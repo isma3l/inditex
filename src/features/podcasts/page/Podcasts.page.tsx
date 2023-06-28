@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { FilterComponent, HomeSqueletonComponent, PodcastListComponent } from '../components';
 import { PodcastInterface } from '@/models';
-import { MessageComponent } from '@/shared/components';
-import { useGetPodcastsQuery } from '../api/api';
+import { MessageComponent } from '@/shared';
 import { isLocalDataUpdated } from '@/util';
+import { FilterComponent, HomeSqueletonComponent, PodcastListComponent } from '../components';
+import { useGetPodcastsQuery } from '../api/api';
 
 const PodcastsPage = () => {
   const [query, setQuery] = useState<string>('');

@@ -1,5 +1,5 @@
-import { EpisodeInterface } from "./Episode.interface";
-import { PodcastInterface } from "./Podcast.interface";
+import { EpisodeInterface } from './Episode.interface';
+import { PodcastInterface } from './Podcast.interface';
 
 export interface PodcastDetailsInterface {
   podcast: PodcastInterface;

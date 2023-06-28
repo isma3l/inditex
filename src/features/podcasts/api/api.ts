@@ -4,15 +4,17 @@ import { LocalDataInterface } from '@/shared';
 import { PodcastInterface } from '@/models';
 
 export const PODCAST_API_REDUCER_KEY = 'podcastApi';
+const QUERY_URL = 'us/rss/toppodcasts/limit=100/genre=1310/json';
 
 export const podcastsApi = createApi({
   reducerPath: PODCAST_API_REDUCER_KEY,
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://server-proxy.vercel.app/api?url=https://itunes.apple.com/',
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    baseUrl: `${process.env.REACT_APP_BASE_URL}/?url=${process.env.REACT_APP_ITUNES_URL}`,
   }),
   endpoints: (builder) => ({
     getPodcasts: builder.query<LocalDataInterface<PodcastInterface[]>, void>({
-      query: () => `us/rss/toppodcasts/limit=100/genre=1310/json`,
+      query: () => QUERY_URL,
       transformResponse: (response: PodcastsResponse): LocalDataInterface<PodcastInterface[]> => {
         const podcasts: PodcastInterface[] = response.feed.entry.map((podcast) => ({
           id: podcast.id.attributes[PodcastKeys.id],

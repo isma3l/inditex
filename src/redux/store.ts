@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { podcastsApi } from '@/features/podcasts';
+import { podcastDetailApi } from '@/features/detailPodcast';
 
 const persistConfig = {
   key: 'root',
@@ -19,6 +20,7 @@ const persistConfig = {
 
 export const rootReducers = combineReducers({
   [podcastsApi.reducerPath]: podcastsApi.reducer,
+  [podcastDetailApi.reducerPath]: podcastDetailApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
@@ -30,7 +32,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(podcastsApi.middleware),
+    }).concat([podcastsApi.middleware, podcastDetailApi.middleware]),
 });
 
 //export type RootState = ReturnType<typeof store.getState>;
