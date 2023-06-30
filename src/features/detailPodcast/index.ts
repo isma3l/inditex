@@ -1,2 +1,2 @@
 export { default as PodcastDetailsPage } from './page/PodcastDetails.page';
-export { podcastDetailApi } from './api/api';
+export { podcastDetailApi, selectIsLoadingDetails } from './api/api';

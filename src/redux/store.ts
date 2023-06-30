@@ -16,6 +16,7 @@ import { podcastDetailApi } from '@/features/detailPodcast';
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['loadingReducer'],
 };
 
 export const rootReducers = combineReducers({
@@ -35,6 +36,7 @@ const store = configureStore({
     }).concat([podcastsApi.middleware, podcastDetailApi.middleware]),
 });
 
-//export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducers>;
+
 export const persistor = persistStore(store);
 export default store;

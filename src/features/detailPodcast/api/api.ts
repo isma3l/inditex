@@ -4,6 +4,7 @@ import type { AxiosError } from 'axios';
 import Parser from 'rss-parser';
 import type { BaseQueryFn } from '@reduxjs/toolkit/query';
 import { get } from '@/lib/api';
+import { RootState } from '@/redux';
 import { PodcastDetailDataResponse } from './types';
 import { PodcastInterface, PodcastDetailsInterface, EpisodeInterface } from '@/models';
 import { mapperRssToEpisode } from './mapperToEpisode';
@@ -64,5 +65,8 @@ export const podcastDetailApi = createApi({
     }),
   }),
 });
+
+export const selectIsLoadingDetails = (state: RootState) =>
+  Object.values(state.detailsPostcastApi.queries).some((query) => query?.status === 'pending');
 
 export const { useGetDetailsPodcastQuery } = podcastDetailApi;

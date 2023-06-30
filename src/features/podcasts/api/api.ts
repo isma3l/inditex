@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { RootState } from '@/redux';
 import { PodcastKeys, PodcastsResponse } from './types';
 import { LocalDataInterface } from '@/shared';
 import { PodcastInterface } from '@/models';
@@ -33,5 +34,8 @@ export const podcastsApi = createApi({
     }),
   }),
 });
+
+export const selectIsLoadingPodcast = (state: RootState) =>
+  Object.values(state.podcastApi.queries).some((query) => query?.status === 'pending');
 
 export const { useGetPodcastsQuery } = podcastsApi;
