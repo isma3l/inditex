@@ -3,6 +3,7 @@ import { RootState } from '@/redux';
 import { PodcastKeys, PodcastsResponse } from './types';
 import { LocalDataInterface } from '@/shared';
 import { PodcastInterface } from '@/models';
+import { SECONDS_IN_A_DAY } from '@/util';
 
 export const PODCAST_API_REDUCER_KEY = 'podcastApi';
 const QUERY_URL = 'us/rss/toppodcasts/limit=100/genre=1310/json';
@@ -16,6 +17,7 @@ export const podcastsApi = createApi({
   endpoints: (builder) => ({
     getPodcasts: builder.query<LocalDataInterface<PodcastInterface[]>, void>({
       query: () => QUERY_URL,
+      keepUnusedDataFor: SECONDS_IN_A_DAY,
       transformResponse: (response: PodcastsResponse): LocalDataInterface<PodcastInterface[]> => {
         const podcasts: PodcastInterface[] = response.feed.entry.map((podcast) => ({
           id: podcast.id.attributes[PodcastKeys.id],

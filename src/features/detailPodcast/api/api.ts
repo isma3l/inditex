@@ -9,6 +9,7 @@ import { PodcastDetailDataResponse } from './types';
 import { PodcastInterface, PodcastDetailsInterface, EpisodeInterface } from '@/models';
 import { mapperRssToEpisode } from './mapperToEpisode';
 import { LocalDataInterface } from '@/shared';
+import { SECONDS_IN_A_DAY } from '@/util';
 
 const DETAILS_PODCAST_API_REDUCER_KEY = 'detailsPostcastApi';
 
@@ -54,6 +55,7 @@ export const podcastDetailApi = createApi({
   endpoints: (builder) => ({
     getDetailsPodcast: builder.query<LocalDataInterface<PodcastDetailsInterface>, string>({
       query: (podcastId) => podcastDetailsUrl(podcastId),
+      keepUnusedDataFor: SECONDS_IN_A_DAY,
       transformResponse: (
         response: PodcastDetailsInterface
       ): LocalDataInterface<PodcastDetailsInterface> => {
