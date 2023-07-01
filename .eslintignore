@@ -1,3 +1,5 @@
 global.d.ts
 tailwind.config.js
 craco.config.js
+jest.setup.js
+jest.config.js
