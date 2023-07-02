@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# Web application for itunes podcasts playback
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+Mini-application for listening to music podcasts.
 
-## Available Scripts
+The application has three views:
 
-In the project directory, you can run:
+Main view
+Details of a podcast
+Details of a podcast chapter
 
-### `npm start`
+Libraries used:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+For development: React, Redux Toolkit, RTK query, Redux persist
+For testing: Jest, Testing Library
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Initial steps
 
-### `npm test`
+Clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `git clone `
 
-### `npm run build`
+Install the dependencies In the root of the cloned project run the following command:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `yarn install`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Application testing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A personal proxy server is used to run the application: (https://github.com/isma3l/server-proxy)
 
-### `npm run eject`
+### Test in development mode
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Although it is not recommended to save environment variables in the repository, as it is a proof of concept we leave the .env.development file that contains the URLs to test the application.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In the root of the project run:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## `yarn start`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+After executing the command a local server will be executed at (http://localhost:3000) and the browser with the web application will be opened.
 
-## Learn More
+### Test in production mode
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For this test, it is required to package the application and to lift it through a local server.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Execute the following command:
+
+## `yarn build`
+
+Once the compilation is finished, a folder called build will be created. This folder is the one to be used for testing.
+
+Tip You can use the serve server. It is easy to use, just install it globally and pass it the path to the build folder.
+
+### `yarn global add serve`
+
+### `serve -s build`
+
+Subsequently, to test the application, log on to (http://localhost:3000/)
+
+## The application is deployed in
