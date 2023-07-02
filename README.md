@@ -55,4 +55,4 @@ Tip You can use the serve server. It is easy to use, just install it globally an
 
 Subsequently, to test the application, log on to (http://localhost:3000/)
 
-## The application is deployed in
+## The application is deployed in (https://inditex-alpha.vercel.app/)
