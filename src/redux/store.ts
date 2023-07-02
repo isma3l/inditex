@@ -16,7 +16,6 @@ import { podcastDetailApi } from '@/features/detailPodcast';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['loadingReducer'],
 };
 
 export const rootReducers = combineReducers({
