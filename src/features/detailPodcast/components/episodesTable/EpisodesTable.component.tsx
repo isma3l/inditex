@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
-import { RouteKeys } from '@/constants';
 import { EpisodeInterface } from '@/models';
+import { RouteKeys } from '@/constants';
 
 type EpisodeTableComponentProps = {
   episodes: EpisodeInterface[];
@@ -21,7 +21,7 @@ const EpisodeTableComponent = ({ episodes }: EpisodeTableComponentProps) => {
         </thead>
         <tbody className="divide-y">
           {episodes.map((episode: EpisodeInterface) => {
-            const episodeLink = RouteKeys.episode(urlParams.podcastId ?? '', episode.id);
+            const episodeLink = RouteKeys.episode(urlParams?.podcastId ?? '', episode.id);
             return (
               <tr
                 className="odd:bg-white even:bg-slate-50 border-b border-slate-300"

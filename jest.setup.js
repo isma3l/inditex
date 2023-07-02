@@ -1,6 +1,9 @@
-import { jest } from '@jest/globals';
 
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useParams: () => jest.fn(),
-  }));
+jest.mock('react-router-dom', () => {
+  const module = jest.requireActual('react-router-dom');
+  
+  return {
+    ...module,
+    useParams: jest.fn()
+  }
+});

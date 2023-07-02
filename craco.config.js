@@ -26,4 +26,21 @@ module.exports = {
       ],
     },
   },
+  jest: {
+    babel: {
+      addPresets: true,
+      addPlugins: true
+    },
+    configure: (jestConfig, { env, paths, resolve, rootDir }) => {
+      jestConfig.moduleNameMapper = {
+        "^@/(.+)": "<rootDir>/src/$1"
+      };
+      jestConfig.setupFiles = [
+        '<rootDir>/jest.setup.js'
+      ];
+      jestConfig.moduleFileExtensions = ['ts', 'tsx', 'js', 'jsx', 'json', 'node'];
+
+      return jestConfig;
+    },
+  },
 };
