@@ -1,5 +1,5 @@
-import { PodcastDetailsInterface } from '@/models';
+import { EpisodeInterface } from '@/models';
 
-export type ContextPodcastDetails = {
-  podcastDetails: PodcastDetailsInterface | null;
+export type ContextPodcastEpisodes = {
+  episodes: EpisodeInterface[];
 };

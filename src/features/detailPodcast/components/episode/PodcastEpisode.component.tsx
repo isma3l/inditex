@@ -1,13 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useCustomOutletContext } from '@/shared/hooks';
-import { ContextPodcastDetails } from '../../types/contextPodcastDetails';
+import type { ContextPodcastEpisodes } from '../../types/contextPodcastDetails';
 import AudioControlComponent from '../audioControl/AudioControl.component';
 
 const PodcastEpisodeComponent = () => {
   const urlParams = useParams();
-  const { podcastDetails } = useCustomOutletContext<ContextPodcastDetails>();
+  const { episodes } = useCustomOutletContext<ContextPodcastEpisodes>();
 
-  const episodes = podcastDetails?.episodes ?? [];
   const episode = episodes.find((ep) => ep.id === urlParams.episodeId);
 
   if (episode === undefined) return null;

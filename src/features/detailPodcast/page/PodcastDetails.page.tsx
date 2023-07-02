@@ -54,7 +54,7 @@ const PodcastDetailsPage = () => {
             urlImage={podcast.urlImage}
             description={podcast?.description ?? ''}
           />
-          <Outlet context={{ podcastDetails: result?.data ?? podcastDetailEmpty }} />
+          <Outlet context={{ episodes: result?.data?.episodes ?? [] }} />
         </>
       )}
     </div>

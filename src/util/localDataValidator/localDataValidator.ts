@@ -13,10 +13,5 @@ export const isLocalDataUpdated = (
 ) => {
   const currentTimeStamp = Date.now();
   const timeDifference = currentTimeStamp - previousTimeStamp;
-  console.log('currentTimeStamp', currentTimeStamp);
-  console.log('previousTimeStamp', previousTimeStamp);
-  console.log('dif: ', timeDifference);
-  console.log('limit', timeLimit);
-  console.log('update: ', timeDifference < timeLimit);
   return timeDifference < timeLimit;
 };
