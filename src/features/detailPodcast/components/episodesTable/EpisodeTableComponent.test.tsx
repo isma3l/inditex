@@ -26,7 +26,7 @@ describe('<EpisodeTableComponent />', () => {
     },
   ];
 
-  test('the total number of episodes is shown', () => {
+  test('table shows 2 rows with data of the episodes and the header', () => {
     render(<EpisodeTableComponent episodes={episodes} />, {
       wrapper: ReactRouterDom.BrowserRouter,
     });

@@ -7,3 +7,5 @@ jest.mock('react-router-dom', () => {
     useParams: jest.fn()
   }
 });
+
+jest.mock('@/shared/hooks');
