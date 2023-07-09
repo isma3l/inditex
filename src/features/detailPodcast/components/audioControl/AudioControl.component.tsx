@@ -4,7 +4,7 @@ type AudioControlComponentPros = {
 
 const AudioControlComponent = ({ url }: AudioControlComponentPros) => {
   return (
-    <audio controls className="pt-5 w-full" role="application" aria-label="reproductor musica">
+    <audio controls className="pt-5 w-full" role="application" aria-label="music player">
       <source src={url} type="audio/ogg" />
       <source src={url} type="audio/mpeg" />
       <source src={url} type="audio/mp3" />

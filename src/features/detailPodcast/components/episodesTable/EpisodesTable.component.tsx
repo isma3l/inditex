@@ -27,7 +27,7 @@ const EpisodeTableComponent = ({ episodes }: EpisodeTableComponentProps) => {
                 className="odd:bg-white even:bg-slate-50 border-b border-slate-300"
                 key={episode.id}
               >
-                <td className="py-3  pr-px">
+                <td className="py-3  pr-px" role="cell">
                   <Link className="text-sky-600 font-medium" to={episodeLink}>
                     {episode.title}
                   </Link>

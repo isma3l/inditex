@@ -34,6 +34,6 @@ describe('<PodcastEpisodeComponent />', () => {
     expect(screen.getByRole('heading', { name: 'description' })).toHaveTextContent(
       episodes[0].description
     );
-    expect(screen.getByRole('application', { name: 'reproductor musica' })).toBeInTheDocument();
+    expect(screen.getByRole('application', { name: 'music player' })).toBeInTheDocument();
   });
 });

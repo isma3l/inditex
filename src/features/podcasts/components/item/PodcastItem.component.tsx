@@ -15,6 +15,7 @@ const PodcastItemComponent = ({ podcast }: PodcastItemComponentProps) => {
             <img
               className="absolute mx-auto h-36 rounded-full sm:mx-0 sm:shrink-0 -top-16 left-14"
               src={podcast.urlImage}
+              alt="podcast image"
             />
           </div>
           <div className="relative mb-6">
