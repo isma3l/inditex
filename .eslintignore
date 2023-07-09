@@ -3,3 +3,5 @@ tailwind.config.js
 craco.config.js
 jest.setup.js
 jest.config.js
+cypress.config.ts
+**/*.cy.ts

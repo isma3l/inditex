@@ -26,6 +26,6 @@
   },
   "include": ["src/**/*.ts*"],
   "exclude": [
-    "node_modules", "jest.config.js", "jest.setup.js"
+    "node_modules", "jest.config.js", "jest.setup.js", "./cypress/e2e/*"
   ]
 }
